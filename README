@@ -1,0 +1,38 @@
+# Zero-Trust Application Dependency Mapper
+
+## Overview
+This is an exploratory project that applies unsupervised machine learning to raw enterprise network logs. It was built to understand how graph community detection algorithms can automate Application Dependency Mapping (ADM) for Zero-Trust network security.
+
+Instead of manually guessing which servers belong to which applications in a chaotic enterprise network, this script reads raw TCP/UDP packet flow data, builds a weighted network graph, and uses the **Louvain community detection algorithm** to automatically cluster servers into distinct functional groups.
+
+## Features
+* **Custom Data Parser:** Streams and parses de-identified, compressed Cisco network logs directly from `.gz` archives.
+* **Graph Construction:** Uses `NetworkX` to map network nodes and weight connections based on packet volume.
+* **Unsupervised Clustering:** Applies the Louvain algorithm to blindly discover application boundaries without prior labeling.
+* **Interactive Visualization:** Generates a physics-based, color-coded HTML map of the enterprise network using `PyVis`.
+
+---
+
+## Dataset Download Instructions
+**The dataset is NOT included in this repository due to its large size.** 
+
+This project is built to analyze the **Cisco Secure Workload Networks of Computing Hosts** dataset. To run this code locally, you must download the data directly from the UCI Machine Learning Repository.
+
+1. Navigate to the [UCI Machine Learning Repository - Cisco Dataset](https://archive.ics.uci.edu/dataset/735/cisco+secure+workload+networks+of+computing+hosts).
+2. Download one of the raw edge files from the dataset files section (e.g., `out1_1.txt.gz`).
+3. Place the downloaded `.gz` file directly into the root directory of this project. **Do not unzip the file.** The Python script is designed to read the compressed data natively.
+
+---
+
+## Installation & Usage
+
+1. Clone this repository to your local machine.
+2. Install the required Python dependencies:
+   ```bash
+   pip install pandas networkx python-louvain pyvis
+
+## References
+
+- Madani, O. (2022). Cisco Secure Workload Networks of Computing Hosts [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C51K7Q.
+- Hagberg, Aric & Swart, Pieter & Chult, Daniel. (2008). Exploring Network Structure, Dynamics, and Function Using NetworkX. Proceedings of the 7th Python in Science Conference. https://proceedings.scipy.org/articles/TCWV9851
+- Vatsal. (2022). Louvain’s Algorithm for Community Detection in Python. towards data science. https://towardsdatascience.com/louvains-algorithm-for-community-detection-in-python-95ff7f675306/
